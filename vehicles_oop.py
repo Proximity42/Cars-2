@@ -1,7 +1,8 @@
-import json
+import json 
 
-with open("storage.json") as fp:
+with open("storage.json") as fp:  #Берём информацию о машинах из файла и помещаем в словарь
 	dictionary = json.load(fp)
+#Создаём классы для задания свойств для машин	
 class Vehicle(object):
 	wheels = 4
 
@@ -45,11 +46,12 @@ while True:
 					break
 				else:
 					print("\nВы ввели некорректные данные\n")
-			car = Car(marka, color, str(doors), transmission, light)
+			car = Car(marka, color, str(doors), transmission, light)  #Задаём класс Car для машины   
 			while True:
 				question = input("\nХотите ли вы дать название будующей машине?(д - да, н - нет)\n")
 				if question.lower() == "д":
 					name = input("\nВведите название для будующей машины\n")
+					#Создаём машину передавая в качестве аргументов свойства для будущей машины
 					dictionary[name] = {"Марка":car.marka, "Цвет": car.color, "Количество дверей": car.doors, "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels}
 					break
 				elif question.lower() == "н": 
@@ -101,7 +103,7 @@ while True:
 						print(f"\n{dictionary[name]}\n")
 						break
 					break
-		elif greed.lower() == "d":
+		elif greed.lower() == "d":  #Удаляет выбранную машину из словаря
 			if len(dictionary) == 0:
 				print("\nУ вас нет машин\n")
 			else:
@@ -113,7 +115,7 @@ while True:
 			dictionary.clear()
 			print("\nВаш гараж был успешно очищен.\n")
 		elif greed.lower() == "q":
-			with open("storage.json", 'w') as output:
+			with open("storage.json", 'w') as output:  #Считываем информацию из словаря и записываем её в файл
 				json.dump(dictionary, output)
 				break
 		else:
