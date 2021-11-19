@@ -6,7 +6,8 @@ class Vehicle(object):
 	wheels = 4
 
 class Car(Vehicle):
-    def __init__(self, color, doors, transmission, light):
+    def __init__(self,marka, color, doors, transmission, light):
+        self.marka = marka    
         self.color = color
         self.doors = doors
         self.transmission = transmission
@@ -26,6 +27,7 @@ while True:
 		elif greed.lower() == "m":
 			print("\nХорошо, давайте создадим новую машину\n")
 			counter_str = str(counter)
+			marka = input("\nВведите марку автомобиля\n")
 			color = input("\nВведите цвет будующей машины\n")
 			while True:
 				doors = input("\nВыберите количество дверей(2 или 4)\n")
@@ -43,15 +45,15 @@ while True:
 					break
 				else:
 					print("\nВы ввели некорректные данные\n")
-			car = Car(color, str(doors), transmission, light)
+			car = Car(marka, color, str(doors), transmission, light)
 			while True:
 				question = input("\nХотите ли вы дать название будующей машине?(д - да, н - нет)\n")
 				if question.lower() == "д":
 					name = input("\nВведите название для будующей машины\n")
-					dictionary[name] = {"Цвет": car.color, "Количество дверей": car.doors, "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels}
+					dictionary[name] = {"Марка":car.marka, "Цвет": car.color, "Количество дверей": car.doors, "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels}
 					break
 				elif question.lower() == "н": 
-					dictionary["Car " + counter_str] = {"Цвет": car.color, "Количество дверей": car.doors, "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels}
+					dictionary["Car " + counter_str] = {"Марка":car.marka, "Цвет": car.color, "Количество дверей": car.doors, "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels}
 					break
 				else:
 					print("\nВы ввели некорректные данные\n")
