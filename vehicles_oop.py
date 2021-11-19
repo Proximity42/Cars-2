@@ -7,12 +7,13 @@ class Vehicle(object):
 	wheels = 4
 
 class Car(Vehicle):
-    def __init__(self,marka, color, doors, transmission, light):
+    def __init__(self,marka, color, doors, transmission, light, salon):
         self.marka = marka    
         self.color = color
         self.doors = doors
         self.transmission = transmission
         self.light = light
+        self.salon = salon
 while True:
 	try:
 		counter = len(dictionary) + 1
@@ -46,16 +47,19 @@ while True:
 					break
 				else:
 					print("\nВы ввели некорректные данные\n")
-			car = Car(marka, color, str(doors), transmission, light)  #Задаём класс Car для машины   
+			salon = input("Какой салон вы хотите, вот список возможных салонов:\nТкань\nАвтокарпет\nВинил\nВелюр\nИскусственная кожа \nНатуральная кожа\nАлькантара\n")
+			car = Car(marka, color, str(doors), transmission, light, salon)  #Задаём класс Car для машины   
 			while True:
 				question = input("\nХотите ли вы дать название будующей машине?(д - да, н - нет)\n")
 				if question.lower() == "д":
 					name = input("\nВведите название для будующей машины\n")
 					#Создаём машину передавая в качестве аргументов свойства для будущей машины
-					dictionary[name] = {"Марка":car.marka, "Цвет": car.color, "Количество дверей": car.doors, "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels}
+					dictionary[name] = {"Марка":car.marka, "Цвет": car.color, "Количество дверей": car.doors, \
+ "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels,"Cалон": car.salon}
 					break
 				elif question.lower() == "н": 
-					dictionary["Car " + counter_str] = {"Марка":car.marka, "Цвет": car.color, "Количество дверей": car.doors, "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels}
+					dictionary["Car " + counter_str] = {"Марка":car.marka, "Цвет": car.color, "Количество дверей": car.doors, \
+ "Коробка передач": car.transmission, "Свет": car.light, "Количество колёс": car.wheels, "Cалон": car.salon }
 					break
 				else:
 					print("\nВы ввели некорректные данные\n")
@@ -96,6 +100,11 @@ while True:
 						elif character.lower() == "количество колёс":
 							print("\nДанный параметр невозможно изменить(он является основным для всех машин)\n")
 							continue
+						elif character.lower() == "салон":
+							salon = input("Какой салон вы хотите, вот список возможных\
+ салонов:\nТкань\nАвтокарпет\nВинил\nВелюр\nИскусственная кожа\
+  \nНатуральная кожа\nАлькантара\n")
+							dictionary[name]["Салон"] = salon
 						else:
 							print(f"\nУ машины {name} нет такого параметра\n")
 							continue
